@@ -1,45 +1,36 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
-        
-        <title>EarlPHI - Playable Online</title>
 
-        <meta property="og:site_name" content="EarlPHI - Playable Online">
-        <meta property="og:locale" content="en">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="EarlPHI - Playable Online">
-        <meta property="og:description" content="Play the classic DOS program EarlPHI directly in your browser.">
+<head>
+  <meta charset="utf-8">
+  <title>EarlPHI - Playable Online</title>
+  <script src="https://js-dos.com/6.22/current/js-dos.js"></script>
+  <style>
+    html, body, canvas, .dosbox-container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
 
-        <meta name="twitter:title" content="EarlPHI - Playable Online">
-        <meta name="twitter:description" content="Play the classic DOS program EarlPHI directly in your browser.">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@caiiiycuk"> <!-- Assuming @caiiiycuk is the js-dos creator -->
-        <meta name="twitter:dnt" content="on">
+<body>
+  <canvas id="jsdos"></canvas>
+  <script>
+    Dos(document.getElementById("jsdos"), {
+        wdosboxUrl: "https://js-dos.com/6.22/current/wdosbox.js",
+        cycles: 1000,
+        autolock: false,
+    }).ready(function (fs, main) {
+      fs.extract("./EARLPHI.jsdos").then(function () {
+        main(["-c", "EARLPHI.EXE"]).then(function (ci) {
+            window.ci = ci;
+        });
+      });
+    });
+  </script>
+</body>
 
-        <meta name="description" content="The classic DOS program EarlPHI, now playable in your web browser.">
-
-        <link rel="canonical" href="https://enveezee.github.io/EarlPHI/">
-        <link rel="preload" as="style" href="https://v8.js-dos.com/build/assets/site-eff5af9b.css" /><link rel="stylesheet" href="https://v8.js-dos.com/build/assets/site-eff5af9b.css" />
-        <link rel="modulepreload" href="https://v8.js-dos.com/build/assets/preact-adb248e8.js" /><script type="module" src="https://v8.js-dos.com/build/assets/preact-adb248e8.js"></script>
-    </head>
-    <body>
-        <div class="mx-auto px-2 lg:min-h-screen flex flex-col">
-            <div class="container mx-auto py-8 px-2">
-                <article class="prose max-w-none">
-                    <h2>EarlPHI - Online Edition</h2>
-                    <p>Loading the classic DOS program...</p>
-                </article>
-                <div class="mockup-window bg-base-300 mb-8 relative">
-                    <div class="flex justify-center px-4 py-16 bg-base-100 relative h-aspect">
-                        <div id="dos-container" class="jsdos wh-full" 
-                             data-url="https://enveezee.github.io/EarlPHI/EARLPHI.jsdos"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
 </html>
