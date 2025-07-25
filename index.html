@@ -50,6 +50,12 @@
         }
     </style>
     <link rel="stylesheet" href="./js-dos.css">
+    <script>
+        // Attempt to configure js-dos base URL before it loads
+        window.Dosbox = {
+            baseUrl: "./"
+        };
+    </script>
     <script src="./js-dos.js"></script>
 </head>
 <body>
@@ -67,8 +73,8 @@
         Dos(document.getElementById("dos-container"), {
             url: "./EARLPHI.jsdos", // Use the new .jsdos bundle
             cycles: 1000, // Adjust cycles as needed for performance
-            autolock: true,
-            emulators: "./emulators/" // Specify the path to the emulators directory
+            autolock: true
+            // Removed emulators: "./emulators/" as we are trying global config
         });
     </script>
 </body>
