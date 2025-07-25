@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EarlPHI</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        #dos {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="./js-dos.css">
+    <script src="./js-dos.js"></script>
+</head>
+<body>
+    <div id="dos"></div>
+    <script>
+        Dos(document.getElementById("dos"), {
+            url: "./EARLPHI.ZIP",
+            cycles: 1000, // Adjust cycles as needed for performance
+            autolock: true
+        }).ready(function (fs, main) {
+            fs.extract("EARLPHI.ZIP", "/").then(function () {
+                main(["-c", "EARLPHI.EXE"]).then(function (ci) {
+                    window.ci = ci;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
