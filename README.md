@@ -6,7 +6,7 @@ This repository hosts the classic DOS program EarlPHI, now playable directly in 
 
 Simply visit the GitHub Pages link for this repository:
 
-`https://enveezee.github.io/EarlPHI/`
+[https://enveezee.github.io/EarlPHI/](https://enveezee.github.io/EarlPHI/)
 
 The game should load automatically in your browser.
 
