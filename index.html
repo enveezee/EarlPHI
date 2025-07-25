@@ -1,74 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>EarlPHI - Playable Online</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #282c34;
-            color: #ffffff;
-        }
-        .container {
-            background-color: #3a404d;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            max-width: 90%;
-            width: 800px;
-        }
-        h1 {
-            color: #61dafb;
-            margin-bottom: 20px;
-        }
-        #dos-container {
-            width: 100%;
-            max-width: 640px; /* Standard DOSBox resolution */
-            height: 400px; /* Standard DOSBox resolution */
-            margin: 20px auto;
-            border: 2px solid #61dafb;
-            background-color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #aaa;
-        }
-        #loading-message {
-            font-size: 1.2em;
-        }
-        canvas {
-            display: block; /* Remove extra space below canvas */
-        }
-    </style>
-    <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
-    <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
-</head>
-<body>
-    <div class="container">
-        <h1>EarlPHI - Online Edition</h1>
-        <p>Loading the classic DOS program...</p>
-        <div id="dos-container">
-            <div id="loading-message">Loading DOSBox...</div>
-        </div>
-        <p>If the program doesn't load, please check your browser's developer console for errors.</p>
-    </div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css">
+        
+        <title>EarlPHI - Playable Online</title>
 
-    <script>
-        console.log("Initializing DosBox...");
-        Dos(document.getElementById("dos-container"), {
-            url: "https://enveezee.github.io/EarlPHI/EARLPHI.jsdos", // Use the new .jsdos bundle
-            cycles: 1000, // Adjust cycles as needed for performance
-            autolock: true
-        });
-    </script>
-</body>
+        <meta property="og:site_name" content="EarlPHI - Playable Online">
+        <meta property="og:locale" content="en">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="EarlPHI - Playable Online">
+        <meta property="og:description" content="Play the classic DOS program EarlPHI directly in your browser.">
+
+        <meta name="twitter:title" content="EarlPHI - Playable Online">
+        <meta name="twitter:description" content="Play the classic DOS program EarlPHI directly in your browser.">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@caiiiycuk"> <!-- Assuming @caiiiycuk is the js-dos creator -->
+        <meta name="twitter:dnt" content="on">
+
+        <meta name="description" content="The classic DOS program EarlPHI, now playable in your web browser.">
+
+        <link rel="canonical" href="https://enveezee.github.io/EarlPHI/">
+        <link rel="preload" as="style" href="https://v8.js-dos.com/build/assets/site-eff5af9b.css" /><link rel="stylesheet" href="https://v8.js-dos.com/build/assets/site-eff5af9b.css" />
+        <link rel="modulepreload" href="https://v8.js-dos.com/build/assets/preact-adb248e8.js" /><script type="module" src="https://v8.js-dos.com/build/assets/preact-adb248e8.js"></script>
+    </head>
+    <body>
+        <div class="mx-auto px-2 lg:min-h-screen flex flex-col">
+            <div class="container mx-auto py-8 px-2">
+                <article class="prose max-w-none">
+                    <h2>EarlPHI - Online Edition</h2>
+                    <p>Loading the classic DOS program...</p>
+                </article>
+                <div class="mockup-window bg-base-300 mb-8 relative">
+                    <div class="flex justify-center px-4 py-16 bg-base-100 relative h-aspect">
+                        <div id="dos-container" class="jsdos wh-full" 
+                             data-url="./EARLPHI.jsdos"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
