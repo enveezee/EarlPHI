@@ -65,15 +65,18 @@
     <script>
         console.log("Initializing DosBox...");
         Dos(document.getElementById("dos-container"), {
-            url: "./EARLPHI.jsdos", // Use the new .jsdos bundle
             cycles: 1000, // Adjust cycles as needed for performance
             autolock: true,
             emulators: "./emulators/" // Specify the path to the emulators directory
-        }).then(function (ci) { // The .then() callback now receives the CommandInterface (ci)
+        }).then(function (ci) {
             console.log("DosBox ready. Hiding loading message.");
             document.getElementById("loading-message").style.display = "none"; // Hide loading message
-            console.log("EARLPHI.jsdos loaded and running.");
-            // No need for fs.extract or main() here, as the .jsdos bundle handles it
+            console.log("Loading EARLPHI.jsdos bundle...");
+            ci.run("./EARLPHI.jsdos").then(function() {
+                console.log("EARLPHI.jsdos loaded and running.");
+            }).catch(function(error) {
+                console.error("Error running EARLPHI.jsdos bundle:", error);
+            });
         }).catch(function(error) {
             console.error("Error initializing DosBox:", error);
         });
