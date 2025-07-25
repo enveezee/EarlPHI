@@ -64,18 +64,11 @@
 
     <script>
         console.log("Initializing DosBox...");
-        const ci = Dos(document.getElementById("dos-container"), {
+        Dos(document.getElementById("dos-container"), {
+            url: "./EARLPHI.jsdos", // Use the new .jsdos bundle
             cycles: 1000, // Adjust cycles as needed for performance
             autolock: true,
             emulators: "./emulators/" // Specify the path to the emulators directory
-        });
-
-        ci.run("./EARLPHI.jsdos").then(function() {
-            console.log("DosBox ready. Hiding loading message.");
-            document.getElementById("loading-message").style.display = "none"; // Hide loading message
-            console.log("EARLPHI.jsdos loaded and running.");
-        }).catch(function(error) {
-            console.error("Error running EARLPHI.jsdos bundle:", error);
         });
     </script>
 </body>
