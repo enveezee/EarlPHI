@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>EarlPHI - Playable Online</title>
+    <script>
+        // Capture console logs and errors before js-dos initializes
+        window.console_logs = [];
+        window.js_errors = [];
+        const originalConsoleLog = console.log;
+        console.log = function(...args) {
+            window.console_logs.push(args.join(' '));
+            originalConsoleLog.apply(console, args);
+        };
+        window.onerror = function(message, source, lineno, colno, error) {
+            window.js_errors.push({ message, source, lineno, colno, error: error ? error.stack : 'No stack' });
+            return false; // Allow default error handling
+        };
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,17 +77,29 @@
     </div>
 
     <script>
+        console.log("Initializing DosBox...");
         Dos(document.getElementById("dos-container"), {
             url: "./EARLPHI.ZIP",
             cycles: 1000, // Adjust cycles as needed for performance
-            autolock: true
+            autolock: true,
+            emulators: "./emulators/" // Specify the path to the emulators directory
         }).ready(function (fs, main) {
+            console.log("DosBox ready. Hiding loading message.");
             document.getElementById("loading-message").style.display = "none"; // Hide loading message
+            console.log("Extracting EARLPHI.ZIP...");
             fs.extract("EARLPHI.ZIP", "/").then(function () {
+                console.log("EARLPHI.ZIP extracted. Attempting to run EARLPHI.EXE...");
                 main(["-c", "EARLPHI.EXE"]).then(function (ci) {
+                    console.log("EARLPHI.EXE launched.");
                     window.ci = ci;
+                }).catch(function(error) {
+                    console.error("Error launching EARLPHI.EXE:", error);
                 });
+            }).catch(function(error) {
+                console.error("Error extracting EARLPHI.ZIP:", error);
             });
+        }).catch(function(error) {
+            console.error("Error initializing DosBox:", error);
         });
     </script>
 </body>
