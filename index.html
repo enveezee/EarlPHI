@@ -65,25 +65,15 @@
     <script>
         console.log("Initializing DosBox...");
         Dos(document.getElementById("dos-container"), {
-            url: "./EARLPHI.ZIP",
+            url: "./EARLPHI.jsdos", // Use the new .jsdos bundle
             cycles: 1000, // Adjust cycles as needed for performance
             autolock: true,
             emulators: "./emulators/" // Specify the path to the emulators directory
-        }).then(function (fs, main) {
+        }).then(function (ci) { // The .then() callback now receives the CommandInterface (ci)
             console.log("DosBox ready. Hiding loading message.");
             document.getElementById("loading-message").style.display = "none"; // Hide loading message
-            console.log("Extracting EARLPHI.ZIP...");
-            fs.extract("EARLPHI.ZIP", "/").then(function () {
-                console.log("EARLPHI.ZIP extracted. Attempting to run EARLPHI.EXE...");
-                main(["-c", "EARLPHI.EXE"]).then(function (ci) {
-                    console.log("EARLPHI.EXE launched.");
-                    window.ci = ci;
-                }).catch(function(error) {
-                    console.error("Error launching EARLPHI.EXE:", error);
-                });
-            }).catch(function(error) {
-                console.error("Error extracting EARLPHI.ZIP:", error);
-            });
+            console.log("EARLPHI.jsdos loaded and running.");
+            // No need for fs.extract or main() here, as the .jsdos bundle handles it
         }).catch(function(error) {
             console.error("Error initializing DosBox:", error);
         });
